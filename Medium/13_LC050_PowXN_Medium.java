@@ -1,14 +1,17 @@
 // LeetCode 50 - Pow(x, n)
 class Solution {
     public double myPow(double x, int n) {
-        long power = n;
-        if (power < 0) { x = 1 / x; power = -power; }
-        double answer = 1.0;
-        while (power > 0) {
-            if ((power & 1) == 1) answer *= x;
-            x *= x;
-            power >>= 1;
+        long exp = Math.abs((long) n);   // safe for Integer.MIN_VALUE
+
+        double result = 1.0;
+        double base = x;
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                result *= base;
+            }
+            base *= base;
+            exp >>= 1;
         }
-        return answer;
+        return n < 0 ? 1.0 / result : result;
     }
 }
