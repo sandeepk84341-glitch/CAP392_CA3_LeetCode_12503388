@@ -1,12 +1,25 @@
 // LeetCode 1295 - Find Numbers with Even Number of Digits
+
 class Solution {
     public int findNumbers(int[] nums) {
+
         int count = 0;
-        for (int number : nums) {
+
+        for (int i = 0; i < nums.length; i++) {
+
+            int number = nums[i];
             int digits = 0;
-            do { digits++; number /= 10; } while (number != 0);
-            if (digits % 2 == 0) count++;
+
+            while (number > 0) {
+                digits++;
+                number = number / 10;
+            }
+
+            if (digits % 2 == 0) {
+                count++;
+            }
         }
+
         return count;
     }
 }
