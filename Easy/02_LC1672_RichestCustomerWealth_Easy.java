@@ -1,12 +1,23 @@
 // LeetCode 1672 - Richest Customer Wealth
+
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        int richest = 0;
-        for (int[] customer : accounts) {
-            int total = 0;
-            for (int money : customer) total += money;
-            richest = Math.max(richest, total);
+
+        int maxWealth = 0;
+
+        for (int i = 0; i < accounts.length; i++) {
+
+            int sum = 0;
+
+            for (int j = 0; j < accounts[i].length; j++) {
+                sum = sum + accounts[i][j];
+            }
+
+            if (sum > maxWealth) {
+                maxWealth = sum;
+            }
         }
-        return richest;
+
+        return maxWealth;
     }
 }
